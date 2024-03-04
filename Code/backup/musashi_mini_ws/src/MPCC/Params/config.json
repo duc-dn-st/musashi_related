@@ -1,0 +1,15 @@
+
+{
+  "n_sqp": 2,
+  "n_reset": 2,
+  "sqp_mixing" : 0.9,
+  "n_sim": 5000,
+  "Ts": 0.05,
+  
+  "model_path": "/home/musashi/Work/Nicole/catkin_ws/musashi_minibot_ws/src/MPCC/Params/model.json",
+  "cost_path": "/home/musashi/Work/Nicole/catkin_ws/musashi_minibot_ws/src/MPCC/Params/cost.json",
+  "bounds_path": "/home/musashi/Work/Nicole/catkin_ws/musashi_minibot_ws/src/MPCC/Params/bounds.json",
+  "track_path": "/home/musashi/Work/Nicole/catkin_ws/musashi_minibot_ws/src/MPCC/Params/track.json",
+  "normalization_path": "/home/musashi/Work/Nicole/catkin_ws/musashi_minibot_ws/src/MPCC/Params/normalization.json"
+
+}

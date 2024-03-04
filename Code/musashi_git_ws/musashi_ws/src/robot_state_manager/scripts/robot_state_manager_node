@@ -1,0 +1,10 @@
+#! /usr/bin/env python3
+
+import rospy
+from robot_state_manager.robot_state_manager_node import RobotStateManagerNode
+
+try:
+    robot_state_manager_node = RobotStateManagerNode()
+    robot_state_manager_node.run()
+except rospy.ROSInterruptException:
+    pass

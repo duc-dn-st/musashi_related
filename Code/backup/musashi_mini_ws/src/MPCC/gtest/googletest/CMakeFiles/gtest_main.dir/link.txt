@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libgtest_main.so -o ../lib/libgtest_main.so CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -Wl,-rpath,/home/musashi/Work/Nicole/catkin_ws/musashi_minibot_ws/src/MPCC/gtest/lib ../lib/libgtest.so -lpthread 

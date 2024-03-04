@@ -1,0 +1,42 @@
+<launch>
+
+    <!-- Parameters -->
+    <arg name="node_start_delay_sec" default="5.0" /> 
+    <arg name="parent_path" default="$(find nitra_robot)" />
+    <arg name="open_rviz" default="true" />
+    <param name="/use_sim_time" value="false" />
+
+    <!-- Device setup -->
+    <include file="$(find nitra_robot)/launch/bringup.launch" />
+    <!-- FrontObstalcleDetection -->
+    <node name="front_obstacle_detection_node" pkg="perception" type="front_obstacle_detection_node"/>
+    <!-- LaserScan to PointCloud -->
+    <node name="laser2cloud" pkg="nitra_robot" type="laserscan2pointcloud"/>
+
+    <node name="publish_trajectory" pkg="trajectory_generation" type="publish_trajectory"/>
+    
+    <node name="robot_state_manager" pkg="robot_state_manager" type="robot_state_manager_node"/>
+    
+    <node name="controller_node" pkg="nitra_robot" type="controller_node" output="screen"/>
+    
+    <!-- START RVIZ -->
+    <group if="$(arg open_rviz)"> 
+        <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(arg parent_path)/rviz/navigation_with_map.rviz"/>
+    </group>
+    <!-- LOAD MAP -->
+    <node name="cartographer_node" pkg="cartographer_ros"
+        type="cartographer_node" 
+        args="
+            -configuration_directory $(find cartographer_config)/configuration_files
+            -configuration_basename lumi_carto_pure_localization.lua
+            -load_state_filename $(find cartographer_config)/maps/map.pbstream"
+        launch-prefix="bash -c 'sleep $(arg node_start_delay_sec); $0 $@' ">
+        <remap from="scan" to="scan_filtered" />
+    </node>
+
+    <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+        type="cartographer_occupancy_grid_node" 
+        args="-resolution 0.05" launch-prefix="bash -c 'sleep $(arg node_start_delay_sec); $0 $@' "/>
+    
+</launch>

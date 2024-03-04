@@ -1,0 +1,22 @@
+<launch>
+  
+  <arg name="parent_path" default="$(find nitra_robot)" />
+  <include file="$(find nitra_robot)/launch/bringup.launch" />
+
+  <!-- Launch Enocks offline trajectory -->
+  <node name="offline_trajectory_node" pkg="trajectory_generation" type="generate_trajectory" output="screen"/>
+  
+  <!-- LaserScan to PointCloud -->
+  <node name="laser2cloud" pkg="nitra_robot" type="laserscan2pointcloud"/>
+
+  <!-- FrontObstalcleDetection -->
+  <node name="front_obstacle_detection_node" pkg="perception" type="front_obstacle_detection_node" output="screen"/>
+
+  <!-- START RVIZ -->
+  <arg name="open_rviz" default="true" />
+    <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(arg parent_path)/rviz/navigation_with_map.rviz"/>
+  </group>
+    
+</launch>

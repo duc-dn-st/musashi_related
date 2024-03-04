@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- <node name="route_sender" pkg="trajectory_generation" type="route_sender.py" output="screen"/> -->
+
+    <node name="route_sender" pkg="trajectory_generation" type="route_sender_setpoint.py" output="screen"/>
+
+    <node name="offline_trajectory_node" pkg="trajectory_generation" type="generate_trajectory"/>
+
+</launch>

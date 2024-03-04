@@ -1,0 +1,8 @@
+prefix=/home/musashi/Work/Nicole/catkin_ws/musashi_minibot_ws/install
+
+Name: model_predictive_contouring_control
+Description: Description of model_predictive_contouring_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lmodel_predictive_contouring_control
+Requires: std_msgs roscpp utilities

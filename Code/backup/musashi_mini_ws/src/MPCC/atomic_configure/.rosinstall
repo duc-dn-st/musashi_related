@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/musashi/Work/Nicole/catkin_ws/musashi_minibot_ws/devel/.private/model_predictive_contouring_control/setup.sh

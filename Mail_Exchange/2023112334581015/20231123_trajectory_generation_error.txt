@@ -1,0 +1,27 @@
+起動する側の関数　(robot_UI.pyの一部)
+
+from robot_state_manager.srv import RobotState
+
+class RobotUI:
+
+    def mode_reset_trajectory(self):
+        print("###### call reset_trajectory #####")
+        request = "Reset_Trajectory"
+        response = self.robot_state_manager_service(request)
+
+    def mode_set_trajectory(self):
+        print("###### call set_trajectory #####")
+        request = "Set_Trajectory"
+        response = self.robot_state_manager_service(request)
+
+ノード trajectory_generation で高い確率で発生するエラー
+
+generate_trajectory: /usr/include/eigen3/Eigen/src/Core/Block.h:120: Eigen::Block<XprType, BlockRows, BlockCols, InnerPanel>::Block(XprType&, Eigen::Index) [with XprType = Eigen::Matrix<double, -1, -1>; int BlockRows = 1; int BlockCols = -1; bool InnerPanel = false; Eigen::Index = long int]: Assertion `(i>=0) && ( ((BlockRows==1) && (BlockCols==XprType::ColsAtCompileTime) && i<xpr.rows()) ||((BlockRows==XprType::RowsAtCompileTime) && (BlockCols==1) && i<xpr.cols()))' failed.
+[offline_trajectory_node-1] process has died [pid 12573, exit code -6, cmd /home/musashiai/musashi_ws/devel/lib/trajectory_generation/generate_trajectory __name:=offline_trajectory_node __log:=/home/musashiai/.ros/log/855fece8-89e4-11ee-833c-f504b7f40f29/offline_trajectory_node-1.log].
+log file: /home/musashiai/.ros/log/855fece8-89e4-11ee-833c-f504b7f40f29/offline_trajectory_node-1*.log
+all processes on machine have died, roslaunch will exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+done
+
+
